@@ -1,0 +1,332 @@
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.3;
+  }
+}
+
+@keyframes snow {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes lightning {
+  0%, 90%, 100% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 1;
+  }
+}
+
+@keyframes cloudMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.weather-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sun {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #FFD700 0%, #FFA500 60%, #FF8C00 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: float 6s ease-in-out infinite, pulse 4s ease-in-out infinite;
+  box-shadow:
+    0 0 40px rgba(255, 215, 0, 0.8),
+    0 0 80px rgba(255, 165, 0, 0.6),
+    0 0 120px rgba(255, 140, 0, 0.4);
+}
+
+.sun::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+}
+
+.sun-ray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform-origin: center;
+  animation: rotate 20s linear infinite;
+}
+
+.sun-ray::before,
+.sun-ray::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255, 215, 0, 0.8), transparent);
+  transform: translateX(-50%);
+}
+
+.sun-ray::before {
+  transform: translateX(-50%) translateY(-90px);
+}
+
+.sun-ray::after {
+  transform: translateX(-50%) translateY(50px);
+}
+
+.cloud {
+  position: absolute;
+  background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+  border-radius: 100px;
+  opacity: 0.9;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 100px;
+  height: 40px;
+  top: 30%;
+  left: 20%;
+  animation: cloudMove 30s linear infinite;
+}
+
+.cloud-1::before {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 10px;
+}
+
+.cloud-1::after {
+  width: 60px;
+  height: 50px;
+  top: -20px;
+  right: 10px;
+}
+
+.cloud-2 {
+  width: 120px;
+  height: 45px;
+  top: 50%;
+  right: 30%;
+  animation: cloudMove 40s linear infinite;
+  animation-delay: -10s;
+}
+
+.cloud-2::before {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: 15px;
+}
+
+.cloud-2::after {
+  width: 70px;
+  height: 55px;
+  top: -25px;
+  right: 15px;
+}
+
+.rain-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(174, 194, 224, 0.8), rgba(174, 194, 224, 0.2));
+  animation: rain 1s linear infinite;
+}
+
+.snow-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: snow 8s linear infinite;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.lightning-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lightning {
+  position: absolute;
+  width: 4px;
+  height: 100px;
+  background: linear-gradient(to bottom, #ffffff, #ffff00, transparent);
+  box-shadow: 0 0 10px #ffffff, 0 0 20px #ffff00;
+  animation: lightning 4s infinite;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%) rotate(15deg);
+}
+
+.mist {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  bottom: 0;
+  background: linear-gradient(to top,
+    rgba(200, 200, 200, 0.6) 0%,
+    rgba(220, 220, 220, 0.4) 50%,
+    transparent 100%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.background-clear-day {
+  background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 100%);
+}
+
+.background-clear-night {
+  background: linear-gradient(to bottom, #0B1F3F 0%, #1a3a5c 100%);
+}
+
+.background-clouds-day {
+  background: linear-gradient(to bottom, #B0C4DE 0%, #D3D3D3 100%);
+}
+
+.background-clouds-night {
+  background: linear-gradient(to bottom, #2C3E50 0%, #4A5568 100%);
+}
+
+.background-rain {
+  background: linear-gradient(to bottom, #5A6C7D 0%, #8B9BA8 100%);
+}
+
+.background-snow {
+  background: linear-gradient(to bottom, #E8EDF2 0%, #B8C5D6 100%);
+}
+
+.background-thunderstorm {
+  background: linear-gradient(to bottom, #2C3E50 0%, #34495E 100%);
+}
+
+.background-mist {
+  background: linear-gradient(to bottom, #A9B8C2 0%, #C5D3DD 100%);
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.moon {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #F4F6F8 0%, #D0D8E0 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  box-shadow:
+    0 0 20px rgba(244, 246, 248, 0.6),
+    0 0 40px rgba(208, 216, 224, 0.4);
+  animation: float 8s ease-in-out infinite;
+}
+
+.moon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+}
